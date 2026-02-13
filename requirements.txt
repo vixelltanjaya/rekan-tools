@@ -1,0 +1,8 @@
+flask
+pillow
+pillow-heif
+pypdf
+qrcode[pil]
+gunicorn
+mysql-connector-python
+python-dotenv

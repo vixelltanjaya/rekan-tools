@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rekan Sukses Tools - Free Online PDF & Image Converter</title>
+    <meta name="description" content="Free online tools: Convert HEIC to PNG, Merge PDF files, Generate QR Codes, and Compress Images. Fast, secure, and free.">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { colors: { rekan: { pink: '#D81B60', cream: '#FFF8E1' } } } }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Poppins', sans-serif; }
+        /* Game Styles */
+        .coin { position: absolute; font-size: 2rem; cursor: pointer; animation: float 1s infinite alternate; }
+        @keyframes float { from { transform: translateY(0); } to { transform: translateY(-5px); } }
+    </style>
+</head>
+<body class="bg-gray-50 flex flex-col min-h-screen">
+
+    <nav class="bg-white shadow-md p-4 sticky top-0 z-50">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="/" class="text-2xl font-bold text-gray-800">Rekan <span class="text-rekan-pink">Sukses</span> Tools</a>
+            <div class="space-x-4 hidden md:block">
+                <button onclick="showTool('heic')" class="text-gray-600 hover:text-rekan-pink">HEIC Converter</button>
+                <button onclick="showTool('qr')" class="text-gray-600 hover:text-rekan-pink">QR Generator</button>
+                <button onclick="showTool('pdf')" class="text-gray-600 hover:text-rekan-pink">Merge PDF</button>
+                <a href="https://rekansukses.com" class="text-sm bg-rekan-pink text-white px-4 py-2 rounded-full">Main Site</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container mx-auto mt-10 p-4 max-w-5xl flex gap-6 flex-col md:flex-row">
+        
+        <div class="w-full md:w-1/4 space-y-2">
+            <div class="bg-white p-4 rounded shadow text-sm text-gray-500 mb-4">
+                <p>Select a tool below to get started.</p>
+            </div>
+            <button onclick="showTool('heic')" class="w-full p-4 text-left bg-white rounded shadow hover:bg-gray-100 font-medium border-l-4 border-rekan-pink tool-btn" id="btn-heic">📸 iPhone Converter</button>
+            <button onclick="showTool('qr')" class="w-full p-4 text-left bg-white rounded shadow hover:bg-gray-100 font-medium tool-btn" id="btn-qr">📱 QR Generator</button>
+            <button onclick="showTool('pdf')" class="w-full p-4 text-left bg-white rounded shadow hover:bg-gray-100 font-medium tool-btn" id="btn-pdf">📄 Merge PDF</button>
+            <button onclick="showTool('compress')" class="w-full p-4 text-left bg-white rounded shadow hover:bg-gray-100 font-medium tool-btn" id="btn-compress">📉 Compressor</button>
+        </div>
+
+        <div class="w-full md:w-3/4">
+            
+            <div class="w-full h-24 bg-gray-200 mb-6 flex items-center justify-center text-gray-400 rounded">
+                <span>Ad Space (Responsive Display Ad)</span>
+            </div>
+
+            <div class="bg-white p-8 rounded shadow-lg min-h-[400px]">
+                
+                <div id="tool-heic" class="tool-section">
+                    <h2 class="text-2xl font-bold mb-4">HEIC to PNG Converter</h2>
+                    <p class="mb-4 text-gray-600">Upload your iPhone .HEIC photos and convert them to PNG instantly.</p>
+                    <input type="file" id="heicInput" accept=".heic" class="border p-2 w-full mb-4">
+                    <button onclick="process('heic')" class="bg-rekan-pink text-white px-6 py-3 rounded font-bold w-full hover:bg-pink-700 transition">Convert Now</button>
+                </div>
+
+                <div id="tool-qr" class="tool-section hidden">
+                    <h2 class="text-2xl font-bold mb-4">QR Generator</h2>
+                    <p class="mb-4 text-gray-600">Create a QR code for your website link.</p>
+                    <input type="text" id="qrText" placeholder="Enter URL (e.g., https://rekansukses.com)" class="border p-4 w-full mb-4">
+                    <button onclick="process('qr')" class="bg-gray-800 text-white px-6 py-3 rounded font-bold w-full hover:bg-black transition">Generate QR</button>
+                </div>
+
+                <div id="tool-pdf" class="tool-section hidden">
+                    <h2 class="text-2xl font-bold mb-4">Merge PDFs</h2>
+                    <p class="mb-4 text-gray-600">Combine multiple PDF files into one document.</p>
+                    <input type="file" id="pdfInput" accept=".pdf" multiple class="border p-2 w-full mb-4">
+                    <button onclick="process('pdf')" class="bg-blue-600 text-white px-6 py-3 rounded font-bold w-full hover:bg-blue-700 transition">Merge Files</button>
+                </div>
+
+                <div id="tool-compress" class="tool-section hidden">
+                    <h2 class="text-2xl font-bold mb-4">Image Compressor</h2>
+                    <p class="mb-4 text-gray-600">Reduce image file size without losing quality.</p>
+                    <input type="file" id="compressInput" accept="image/*" class="border p-2 w-full mb-4">
+                    <button onclick="process('compress')" class="bg-green-600 text-white px-6 py-3 rounded font-bold w-full hover:bg-green-700 transition">Compress</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container mx-auto mt-12 px-4 max-w-5xl">
+        <div class="bg-white p-8 rounded shadow-sm prose max-w-none text-gray-600">
+            <h2 class="text-2xl font-bold text-gray-800 mb-4">Complete Guide to Rekan Sukses Tools</h2>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6">How to Convert HEIC to PNG?</h3>
+            <p>HEIC files from iPhones often don't open on Windows. Use our <strong>Free HEIC Converter</strong> to fix this instantly. Just upload and download.</p>
+            
+            <h3 class="text-xl font-semibold text-gray-800 mt-6">Why Merge PDF Files?</h3>
+            <p>Organize your documents by combining multiple PDF contracts or reports into one file. Our system deletes your files automatically after processing.</p>
+        </div>
+    </div>
+
+    <footer class="bg-white mt-12 py-8 border-t text-center text-gray-500 text-sm">
+        <p>&copy; 2026 Rekan Sukses. All rights reserved.</p>
+        <div class="mt-2 space-x-4">
+            <a href="https://rekansukses.com/privacy" class="hover:text-rekan-pink">Privacy Policy</a>
+            <a href="https://rekansukses.com/terms" class="hover:text-rekan-pink">Terms of Service</a>
+        </div>
+    </footer>
+
+    <div id="game" class="fixed inset-0 bg-black/90 hidden flex flex-col justify-center items-center text-white z-50">
+        <h2 class="text-3xl font-bold">Processing...</h2>
+        <p class="mb-4">Catch the coins while you wait!</p>
+        <div id="board" class="w-80 h-80 bg-gray-800 relative border-4 border-rekan-pink overflow-hidden rounded-xl">
+            <div id="score" class="absolute top-2 left-2 text-xl font-bold">Score: 0</div>
+        </div>
+        <button onclick="stopGame()" class="mt-4 text-gray-400 hover:text-white underline">Cancel</button>
+    </div>
+
+    <script>
+        // --- 1. Tool Switching Logic ---
+        function showTool(id) {
+            // Hide all tools
+            document.querySelectorAll('.tool-section').forEach(el => el.classList.add('hidden'));
+            // Show selected tool
+            document.getElementById('tool-' + id).classList.remove('hidden');
+            
+            // Reset Sidebar Buttons
+            document.querySelectorAll('.tool-btn').forEach(btn => btn.classList.remove('border-l-4', 'border-rekan-pink'));
+            // Highlight active button
+            document.getElementById('btn-' + id).classList.add('border-l-4', 'border-rekan-pink');
+        }
+
+        // --- 2. Main Processing Logic ---
+        async function process(type) {
+            let formData = new FormData();
+            let url = `/api/${type}`;
+            
+            // Validate Input
+            if(type === 'heic') {
+                let f = document.getElementById('heicInput').files[0];
+                if(!f) return alert("Please select a HEIC file first!");
+                formData.append('file', f);
+            }
+            if(type === 'qr') {
+                let t = document.getElementById('qrText').value;
+                if(!t) return alert("Please enter a URL!");
+                formData.append('text', t);
+            }
+            if(type === 'compress') {
+                let f = document.getElementById('compressInput').files[0];
+                if(!f) return alert("Please select an image!");
+                formData.append('file', f);
+            }
+            if(type === 'pdf') {
+                let files = document.getElementById('pdfInput').files;
+                if(files.length < 1) return alert("Please select PDF files!");
+                for(let f of files) formData.append('files', f);
+                url = '/api/merge';
+            }
+
+            startGame(); // Start Game Overlay
+            
+            try {
+                let res = await fetch(url, { method: 'POST', body: formData });
+                
+                if(res.ok) {
+                    let blob = await res.blob();
+                    let link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    // Smart naming
+                    let ext = type === 'heic' ? 'png' : (type === 'qr' ? 'png' : (type === 'pdf' ? 'pdf' : 'jpg'));
+                    link.download = `rekan_sukses_result.${ext}`;
+                    link.click();
+                    
+                    // Delay slightly so they see the result
+                    setTimeout(() => { 
+                        stopGame(); 
+                        alert("Success! Your file is downloading."); 
+                    }, 1000);
+                } else {
+                    stopGame(); 
+                    let err = await res.json();
+                    alert("Error: " + (err.error || "Processing failed"));
+                }
+            } catch(e) { 
+                stopGame(); 
+                console.error(e);
+                alert("Connection Error. Is the server running?"); 
+            }
+        }
+
+        // --- 3. Game Logic ---
+        let timer, score = 0;
+        function startGame() {
+            document.getElementById('game').classList.remove('hidden');
+            score = 0;
+            document.getElementById('score').innerText = "Score: 0";
+            
+            // Clear previous coins
+            document.querySelectorAll('.coin').forEach(c => c.remove());
+
+            timer = setInterval(() => {
+                let coin = document.createElement('div');
+                coin.innerText = "💰";
+                coin.className = "coin";
+                coin.style.left = Math.random() * 260 + "px"; // Keep inside board
+                coin.style.top = Math.random() * 260 + "px";
+                
+                coin.onclick = function() { 
+                    score++; 
+                    document.getElementById('score').innerText = "Score: "+score; 
+                    this.remove(); 
+                };
+                
+                document.getElementById('board').appendChild(coin);
+                
+                // Remove coin after 1.5s
+                setTimeout(() => { if(coin.parentElement) coin.remove(); }, 1500);
+            }, 600);
+        }
+
+        function stopGame() {
+            clearInterval(timer);
+            document.getElementById('game').classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
